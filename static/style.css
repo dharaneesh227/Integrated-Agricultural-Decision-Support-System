@@ -1,0 +1,127 @@
+
+webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 0;
+    padding: 0;
+    margin: 0px;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    /* border: 1px solid #000; */
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+  }
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    /* border: 1px solid #000; */
+    border-top: none;
+  }
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+video {
+    object-fit: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+.content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
+
+/* body {
+overflow: hidden; 
+} */
+
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+    .tab {
+        display: grid;
+        align-items: center;
+    }
+}

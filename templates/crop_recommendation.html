@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Recommendation based on District and Season</h1>
+        <form method="post" action="/crop_recommendation">
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+            <label for="district">District:</label>
+            <input type="text" id="district" name="district" required>
+            <label for="season">Season:</label>
+            <input type="text" id="season" name="season" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

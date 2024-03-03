@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Agricultural Decision Support System</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+    <video autoplay muted id="myVideo">
+        <source src="/static/vdo2.mp4" type="video/mp4">
+    </video>
+
+    <div class="container example">
+        <h1 style="text-align: center; color: #fff;">Integrated Agricultural Decision Support System</h1>
+        <ul>
+            <!-- <li><a href="/crop_recommendation">Crop Recommendation based on District and Season</a></li>
+            <li><a href="/soil_crop_prediction">Crop Prediction based on Soil Conditions</a></li>
+            <li><a href="/yield_prediction">Crop Yield Prediction</a></li> -->
+        </ul>
+        
+        <div class="tab">
+            <button class="tablinks" onclick="openModule(event, 'District')">Crop Recommendation - District</button>
+            <button class="tablinks" onclick="openModule(event, 'Soil')">Crop Prediction - Soil Conditions</button>
+            <button class="tablinks" onclick="openModule(event, 'Yield')">Crop Yield Prediction</button>
+        </div>
+  
+        <div id="District" class="tabcontent">
+            <form method="post" name="form1" onsubmit="crop_recommendation()">
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+                <label for="district">District:</label>
+                <input type="text" id="district" name="district" required>
+                <label for="season">Season:</label>
+                <input type="text" id="season" name="season" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+  
+        <div id="Soil" class="tabcontent">
+            <form method="post" name="form2" onsubmit="soil_crop_prediction()">
+                <label for="param1">Nitrogen Content:</label>
+                <input type="number" id="param1" name="param1" required>
+                <label for="param2">Phosphorous Content:</label>
+                <input type="number" id="param2" name="param2" required>
+                <label for="param3">Potassium Content:</label>
+                <input type="number" id="param3" name="param3" required>
+                <label for="param4">ph of the Soil:</label>
+                <input type="number" id="param4" name="param4" required>
+                <label for="param5">Rainfall(Annual):</label>
+                <input type="number" id="param5" name="param5" required>
+                <button type="submit">Submit</button>
+            </form> 
+        </div>
+  
+        <div id="Yield" class="tabcontent">
+            <form method="post" name="form3" onsubmit="yield_prediction()">
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+                <label for="district">District:</label>
+                <input type="text" id="district" name="district" required>
+                <label for="season">Season:</label>
+                <input type="text" id="season" name="season" required>
+                <label for="crop">Crop:</label>
+                <input type="text" id="crop" name="crop" required>
+                <label for="param1">Area:</label>
+                <input type="number" id="param1" name="param1" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+        <div id="result" style="color: #fff;">
+        </div>
+
+    </div>
+    
+    
+
+<script>
+    function openModule(evt, cityName) {
+    var resulterase = document.getElementById('result');
+    resulterase.innerHTML = '';
+
+     var i, tabcontent, tablinks;
+     tabcontent = document.getElementsByClassName("tabcontent");
+     for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+     }
+     tablinks = document.getElementsByClassName("tablinks");
+     for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+     }
+     document.getElementById(cityName).style.display = "block";
+     evt.currentTarget.className += " active";
+    }
+
+    function crop_recommendation() {
+        event.preventDefault();
+
+        var form = document.forms['form1'];
+        var state = form.elements['state'].value;
+        var district = form.elements['district'].value;
+        var season = form.elements['season'].value;
+
+
+        document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">Please wait while we recommend the optimal crop for you...</h2>';
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/crop_recommendation', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            state: state,
+            district: district,
+            season: season
+        }));
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                var responsetxt ="<ul>";
+                for (var i = 0; i < response.length; i++) {
+                    responsetxt += '<li>' + response[i] + '</li>';
+                }
+                responsetxt += "</ul>";
+                document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your optimal crop(s) are</h2>'+
+                                                                '<h3 style="margin: 0;  margin-left:30%;">' + responsetxt + '</h3>';
+            }
+        }
+    }
+
+    function soil_crop_prediction() {
+        event.preventDefault();
+
+        var form = document.forms['form2']; var param1 = form.elements['param1'].value; var param2 = form.elements['param2'].value; var param3 = form.elements['param3'].value; var param4 = form.elements['param4'].value; var param5 = form.elements['param5'].value;
+
+        document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">Please wait while we predict the optimal crop for you...</h2>';
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/soil_crop_prediction', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            param1: param1,
+            param2: param2,
+            param3: param3,
+            param4: param4,
+            param5: param5
+        }));
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                var res = response[0];
+                var city = response[1];
+                var c_t = response[2];
+                var c_h = response[3]; 
+                document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your optimal crop is ' + res + '</h2>'+
+                                                                '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your current city is ' + city + '</h2>'+
+                                                                '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your current temperature is ' + c_t + '</h2>'+
+                                                                '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your current humidity is ' + c_h + '</h2>';
+            }
+        }
+    }
+
+    function yield_prediction() {
+        event.preventDefault();
+
+        var form = document.forms['form3'];
+        var state = form.elements['state'].value;
+        var district = form.elements['district'].value;
+        var season = form.elements['season'].value;
+        var crop = form.elements['crop'].value;
+        var param1 = form.elements['param1'].value;
+        // alert( state + district + season + crop + param1);
+
+        document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">Please wait while we predict the yield for you...</h2>';
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', '/yield_prediction', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            state: state,
+            district: district,
+            season: season,
+            crop: crop,
+            param1: param1
+        }));
+
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                var res = JSON.parse(xhr.responseText);
+                document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your predicted yield is ' + res + ' quintal(s) </h2>';
+            }
+        }
+
+    }
+</script>
+         
+</body>
+</html>
