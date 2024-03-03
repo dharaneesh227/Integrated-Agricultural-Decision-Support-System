@@ -12,10 +12,10 @@ def YieldPrediction(state, district, season, crop, area):
     # print("\n\n")
     # print("=================== CROP YIELD PREDICTION =======================")
 
-    loaded_model = joblib.load('D:\mini project\sem8\Flask Server\yield_prediction_model_tn.joblib')#yield_prediction_model_tn.joblib
+    loaded_model = joblib.load('yield_prediction_model_tn.joblib')#yield_prediction_model_tn.joblib
 
     # Load the saved OneHotEncoder
-    loaded_encoder = joblib.load('D:\mini project\sem8\Flask Server\ohe_yield_prediction.joblib')#ohe_yield_prediction.joblib
+    loaded_encoder = joblib.load('ohe_yield_prediction.joblib')#ohe_yield_prediction.joblib
 
     # Get the user inputs for testing
 

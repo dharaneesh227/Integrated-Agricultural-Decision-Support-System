@@ -53,7 +53,7 @@ def SoilCropPrediction(n, p, k, ph, rainfall):
     # Current raifall of the city: current_rainfall
     # Current city name: city
 
-    loaded_model = pickle.load(open(r'D:\mini project\sem8\Flask Server\NBClassifier.pkl', 'rb'))
+    loaded_model = pickle.load(open('NBClassifier.pkl', 'rb'))
 
     # data = np.array([[83, 45, 60, 28, 70.3, 7.0, 150.9]])
     # Array Format => [N, P, K, Temperature, Humidity, pH, Rainfall]
