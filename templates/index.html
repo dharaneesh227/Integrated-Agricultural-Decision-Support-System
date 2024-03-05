@@ -10,7 +10,7 @@
 <body>
 
     <video autoplay muted id="myVideo">
-        <source src="/static/vdo2.mp4" type="video/mp4">
+        <source src="/static/video (1080p).mp4" type="video/mp4">
     </video>
 
     <div class="container example">
@@ -247,60 +247,60 @@
             if (xhr.status == 200) {
                 var result = JSON.parse(xhr.responseText);
                 
-                var res = "";
-                for (var i = 0; i < result[3].length; i++) {
-                    res += result[3][i][0]+ ' - '+ result[3][i][1] + "<br>";
-                }
+                var label = result[3].map(function(item) {
+                    return item[0];
+                });
+                var data = result[3].map(function(item) {
+                    return item[1];
+                });
+                // for (var i = 0; i < result[3].length; i++) {
+                //     res += result[3][i][0]+ ' - '+ result[3][i][1] + "<br>";
+                // }
 
-                document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">The predicted price for'+ crop + ' are<br></h2>' + 
+                document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">The predicted price for '+ crop + ' are<br></h2>' + 
                 '<h3 style="margin: 0; margin-top:1%; text-align:center;">Maximum - ' + result[0] + ' Rs/quintal <br>'+
                 'Minimum - ' + result[1] + ' Rs/quintal <br>'+
-                'Current - ' + result[2] + ' Rs/quintal <br><br>'+
-                res + '</h3>';
+                'Current - ' + result[2] + ' Rs/quintal </h3> <br><br>'+
+                '<div id="chartContainer" style="height:400px"> </div>';
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Predicted Prices for next 12 months"
+	},
+	data: [{        
+		type: "line",
+      	indexLabelFontSize: 16,
+		dataPoints: [
+      { y: data[0], label: label[0] },
+      { y: data[1], label: label[1] },
+      { y: data[2], label: label[2] },
+      { y: data[3], label: label[3] },
+      { y: data[4], label: label[4] },
+      { y: data[5], label: label[5] },
+      { y: data[6], label: label[6] },
+      { y: data[7], label: label[7] },
+      { y: data[8], label: label[8] },
+      { y: data[9], label: label[9] }
+		]
+	}]
+});
+chart.render();
             }
         }
-    
     }
+    
+window.onload = function () {
+    
+}
 
-     
-
-//     window.onload = function () {
-//   var chart = new CanvasJS.Chart("chartContainer", {
-// 	animationEnabled: true,
-// 	theme: "light2",
-// 	title:{
-// 		text: "Simple Line Chart"
-// 	},
-// 	data: [{        
-// 		type: "line",
-//       	indexLabelFontSize: 16,
-// 		dataPoints: [
-// 			{ y: 450 },
-// 			{ y: 414},
-// 			{ y: 520, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
-// 			{ y: 460 },
-// 			{ y: 450 },
-// 			{ y: 500 },
-// 			{ y: 480 },
-// 			{ y: 480 },
-// 			{ y: 410 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-// 			{ y: 500 },
-// 			{ y: 480 },
-// 			{ y: 510 }
-// 		]
-// 	}]
-// });
-// chart.render();
-
-// }
-
-
-$(document).ready(function(){
-        $('.slider').slider({full_width :true});
-    });
+// $(document).ready(function(){
+//         $('.slider').slider({full_width :true});
+//     });
 </script>
 
-<scrip src="static/canvas.js"></script>
+  <script src="static/canvas.js"></script>
          
 </body>
 </html>
