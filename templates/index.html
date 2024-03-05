@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integrated Agricultural Decision Support System</title>
     <link rel="stylesheet" href="static/style.css">
+
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">  -->
+
 </head>
 <body>
 
@@ -24,6 +28,7 @@
             <button class="tablinks" onclick="openModule(event, 'District')">Crop Recommendation - District</button>
             <button class="tablinks" onclick="openModule(event, 'Soil')">Crop Prediction - Soil Conditions</button>
             <button class="tablinks" onclick="openModule(event, 'Yield')">Crop Yield Prediction</button>
+            <button class="tablinks" onclick="openModule(event, 'price')">Crop Price Estimation</button>
         </div>
   
         <div id="District" class="tabcontent">
@@ -69,8 +74,301 @@
                 <button type="submit">Submit</button>
             </form>
         </div>
+
+<div id="price" class="tabcontent" >
+    <h4 style="text-align: center; color: #fff;">Select Crop for price estimation</h4>
+
+    <div class="row" style="margin-left: 2%; margin-right: 2%;">
+
+      <div class="col s3" >
+        <a href="http://localhost:5000/commodity/paddy" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col s4" style="margin-left: auto;">
+                <span class="card-title" style="color: white;">Paddy</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/wheat" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper" >
+              <div class="col">
+                <span class="card-title">Wheat</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+       
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/barley" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">barley</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/soyabean" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">soyabean</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/cotton" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">cotton</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="row" style="margin-left: 2%; margin-right: 2%;">
+
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/copra" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col s4" style="margin-left: auto;">
+                <span class="card-title">Coconut</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/bajra" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Bajra</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+       
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/rapeseed" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Mustard Seed</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/sesamum" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Gingelly Seed</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/gram" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Gram</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="row" style="margin-left: 2%; margin-right: 2%;">
+
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/sugarcane" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col s4" style="margin-left: auto;">
+                <span class="card-title">Sugarcane</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/arhar" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Arhar</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+       
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/ragi" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Ragi</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/maize" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Maize</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/moong" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Moong</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="row" style="margin-left: 2%; margin-right: 2%;">
+
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/masoor" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col s4" style="margin-left: auto;">
+                <span class="card-title">Masoor</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/urad" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Urad</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+       
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/jute" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Raw Jute</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/niger" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Niger Seed</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/safflower" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Kardi Seed</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="row" style="margin-left: 2%; margin-right: 2%;">
+
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/sunflower" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col s4" style="margin-left: auto;">
+                <span class="card-title">Sunflower</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/jowar" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Jowar</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+       
+      <div class="col s3">
+        <a href="http://localhost:5000/commodity/groundnut" style="color: #000000">
+          <div class="card lighten-4" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="card-content row valign-wrapper">
+              <div class="col">
+                <span class="card-title">Ground Nut Seeds</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+</div>
         
-        <div id="result" style="color: #fff;">
+    <div id="result" style="color: #fff;">
         </div>
 
     </div>
@@ -193,6 +491,10 @@
         }
 
     }
+
+     $(document).ready(function(){
+        $('.slider').slider({full_width :true});
+    });
 </script>
          
 </body>
