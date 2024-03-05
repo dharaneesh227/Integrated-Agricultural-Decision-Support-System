@@ -75,6 +75,16 @@ input {
     color: #fff;
 }
 
+select {
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
 button {
     background-color: #4caf50;
     color: #fff;

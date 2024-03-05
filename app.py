@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from District_Crop_Recommendation_Testing import Question, Leaf, Decision_Node, print_tree, print_leaf, classify, class_counts, DistrictCropRecommendation
 from Soil_Crop_Recommendation_Testing import SoilCropPrediction
 from Yield_Prediction_Testing import YieldPrediction
+from Price_Prediction_Testing import PricePrediction
 import warnings
 warnings.filterwarnings("ignore")
 app = Flask(__name__)
@@ -59,6 +60,18 @@ def yield_prediction():
         # return render_template('yield_prediction_result.html', predicted_yield=predicted_yield)
         return jsonify(predicted_yield)
     # return render_template('yield_prediction.html')
+    return None
+
+@app.route('/price_prediction', methods=['POST', 'GET'])
+def crop_price_prediction():
+    if request.method == 'POST':
+        data=request.get_json()
+        print(data)
+        crop = data['crop']
+        max, min, cur, forecast_val = PricePrediction(crop)
+        # return render_template('crop_price_prediction_result.html', max=max, min=min, cur=cur, forecast_val=forecast_val)
+        return jsonify(max, min, cur, forecast_val)
+    # return render_template('crop_price_prediction.html')
     return None
 
 if __name__ == '__main__':

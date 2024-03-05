@@ -37,7 +37,7 @@ def YieldPrediction(state, district, season, crop, area):
 
     # Print the prediction
     #print(f"Prediction: {prediction[0]}")
-    print(prediction[0])
+    # print(prediction[0])
     return prediction[0]
 
 # Input parameters:
