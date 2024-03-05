@@ -6,7 +6,7 @@ def DistrictCropRecommendation(state, district, season):
     # print("\n\n")
     # print("=================== CROP RECOMMENDATION BASED DISTRICT AND SEASON =======================")
 
-    dt_model_final = joblib.load('D:\mini project\sem8\Flask Server\district_crops.pkl')
+    dt_model_final = joblib.load('district_crops.pkl')
 
     testing_data = [[state, district, season]]
 
