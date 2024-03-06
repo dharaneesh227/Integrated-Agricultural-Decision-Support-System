@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
-from District_Crop_Recommendation_Testing import Question, Leaf, Decision_Node, print_tree, print_leaf, classify, class_counts, DistrictCropRecommendation
+from District_Crop_Recommendation_Testing import DistrictCropRecommendation
+from Decision_Tree_DCR import Question, Leaf, Decision_Node, class_counts, print_tree, print_leaf, classify
 from Soil_Crop_Recommendation_Testing import SoilCropPrediction
 from Yield_Prediction_Testing import YieldPrediction
 from Price_Prediction_Testing import PricePrediction
