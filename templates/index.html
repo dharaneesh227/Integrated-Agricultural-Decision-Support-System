@@ -258,8 +258,8 @@
                 // }
 
                 document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">The predicted price for '+ crop + ' are<br></h2>' + 
-                '<h3 style="margin: 0; margin-top:1%; text-align:center;">Maximum - ' + result[0] + ' Rs/quintal <br>'+
-                'Minimum - ' + result[1] + ' Rs/quintal <br>'+
+                '<h3 style="margin: 0; margin-top:1%; margin-left:30%;  text-align:left;">Maximum - ' +  result[0][0] + ' : '+ result[0][1] + ' Rs/quintal <br>'+
+                'Minimum - ' + result[1][0] + ' : '+ result[1][1] + ' Rs/quintal <br>'+
                 'Current - ' + result[2] + ' Rs/quintal </h3> <br><br>'+
                 '<div id="chartContainer" style="height:400px"> </div>';
 
@@ -267,7 +267,7 @@
 	animationEnabled: true,
 	theme: "light2",
 	title:{
-		text: "Predicted Prices for next 12 months"
+		text: "Predicted Prices for next 10 months"
 	},
 	data: [{        
 		type: "line",
