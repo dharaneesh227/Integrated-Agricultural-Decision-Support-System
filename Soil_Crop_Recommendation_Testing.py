@@ -66,7 +66,7 @@ def SoilCropPrediction(n, p, k, ph, rainfall,latitude,longitude):
     # current_rainfall = 200
     data = np.array([[n, p, k, current_temperature, current_humidity, ph, rainfall]])
     prediction = loaded_model.predict(data)
-    print(prediction)
+    # print(prediction)
     #Final Crop prediction result variable => prediction
     #print("\nSuitable crop for given soil conditions: ", prediction[0], "\n\n")
 

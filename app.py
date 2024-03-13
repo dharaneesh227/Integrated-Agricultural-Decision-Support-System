@@ -39,7 +39,7 @@ def soil_crop_prediction():
         param5 = float(data['param5'])
         latitude = data['lat']
         longitude = data['lon']
-        print(param1, param2, param3, param4, param5, latitude, longitude)
+        # print(param1, param2, param3, param4, param5, latitude, longitude)
         # predicted_crop, city, curr_temperature, curr_humidity = SoilCropPrediction(param1, param2, param3, param4, param5, latitude, longitude)
         predicted_crop, curr_temperature, curr_humidity = SoilCropPrediction(param1, param2, param3, param4, param5, latitude, longitude)
         # return render_template('soil_crop_prediction_result.html', predicted_crop=predicted_crop, city=city,curr_temperature=curr_temperature, curr_humidity=curr_humidity)
