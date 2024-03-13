@@ -7,24 +7,24 @@ import requests, json
 
 # Algorithm used for training the model: Naive Bayes Classifier -> Classifies into 22 classes of crops
 
-def SoilCropPrediction(n, p, k, ph, rainfall):
-    res = requests.get('https://ipinfo.io/')
-    data = res.json()
+def SoilCropPrediction(n, p, k, ph, rainfall,latitude,longitude):
+    # res = requests.get('https://ipinfo.io/')
+    # data = res.json()
     # print("\n\n")
     # print("=================== CROP RECOMMENDATION BASED ON SOIL CONDITIONS =======================")
-    city = data['city']
+    # city = data['city']
     # print("Current Location:    ", city)
-    location = data['loc'].split(',')
-    latitude = location[0]
+    # location = data['loc'].split(',')
+    # latitude = location[0]
     # print("Latitude:   ", latitude)
-    longitude = location[1]
+    # longitude = location[1]
     # print("Longitude:   ", longitude)
 
     api_key = "5b2691c07d8a7d9776ffb21270ca7474"
     base_url = "https://api.openweathermap.org/data/2.5/weather?"
 
     complete_url = base_url + "lat=" + latitude + "&lon=" + longitude +  "&appid=" + api_key
-    #print(complete_url)
+    # print(complete_url)
 
     response = requests.get(complete_url)
     #print(response)
@@ -66,11 +66,12 @@ def SoilCropPrediction(n, p, k, ph, rainfall):
     # current_rainfall = 200
     data = np.array([[n, p, k, current_temperature, current_humidity, ph, rainfall]])
     prediction = loaded_model.predict(data)
-
+    print(prediction)
     #Final Crop prediction result variable => prediction
     #print("\nSuitable crop for given soil conditions: ", prediction[0], "\n\n")
 
-    return prediction[0], city, current_temperature, current_humidity
+    # return prediction[0], city, current_temperature, current_humidity
+    return prediction[0], current_temperature, current_humidity
 
 #pred, cit, curt, curhum = crop_recommendation(62, 52, 26, 6.2, 200)
 #pred, cit, curt, curhum = crop_recommendation(22, 36, 48, 8.2, 120)

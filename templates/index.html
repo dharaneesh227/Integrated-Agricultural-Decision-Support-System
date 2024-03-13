@@ -735,19 +735,19 @@
         <div id="Soil" class="tabcontent">
             <form method="post" name="form2" onsubmit="soil_crop_prediction()">
                 <label for="param1">Nitrogen Content:</label>
-                <input type="number" id="param1" name="param1" value="10" min="0" required>
+                <input type="number" id="param1" name="param1" value="30" min="0" required>
 
                 <label for="param2">Phosphorous Content:</label>
-                <input type="number" id="param2" name="param2" value="10" min="0" required>
+                <input type="number" id="param2" name="param2" value="25" min="0" required>
 
                 <label for="param3">Potassium Content:</label>
-                <input type="number" id="param3" name="param3" value="10" min="0" required>
+                <input type="number" id="param3" name="param3" value="42" min="0" required>
 
                 <label for="param4">ph of the Soil:</label>
-                <input type="number" id="param4" name="param4" value="7" min="0" max="14" required>
+                <input type="number" id="param4" name="param4" value="8" min="0" max="14" required>
 
                 <label for="param5">Rainfall(Annual):</label>
-                <input type="number" id="param5" name="param5" value="100" min="0" required>
+                <input type="number" id="param5" name="param5" value="150" min="0" required>
                 <button type="submit">Submit</button>
             </form> 
         </div>
@@ -1030,6 +1030,17 @@
         var form = document.forms['form2']; var param1 = form.elements['param1'].value; var param2 = form.elements['param2'].value; var param3 = form.elements['param3'].value; var param4 = form.elements['param4'].value; var param5 = form.elements['param5'].value;
 
         document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">Please wait while we predict the optimal crop for you...</h2>';
+        
+        // var Datas ={};
+        fetch('https://ipinfo.io/json').then(response => response.json()).then(data => {
+            // console.log(data);
+            city = data.city;
+            lat = data.loc.split(',')[0];
+            lon = data.loc.split(',')[1];
+            // console.log(city, lat, lon);
+        
+
+        // console.log(Datas);
 
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/soil_crop_prediction', true);
@@ -1039,22 +1050,24 @@
             param2: param2,
             param3: param3,
             param4: param4,
-            param5: param5
+            param5: param5,
+            lat: lat,
+            lon: lon
         }));
         xhr.onload = function() {
             if (xhr.status == 200) {
                 var response = JSON.parse(xhr.responseText);
                 var res = response[0];
-                var city = response[1];
-                var c_t = response[2];
-                var c_h = response[3]; 
+                var c_t = response[1];
+                var c_h = response[2]; 
                 document.getElementById('result').innerHTML = '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your optimal crop is ' + res + '</h2>'+
                                                                 '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your current city is ' + city + '</h2>'+
                                                                 '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your current temperature is ' + c_t + '</h2>'+
                                                                 '<h2 style="margin: 0; margin-top:1%; text-align:center;">Your current humidity is ' + c_h + '</h2>';
             }
         }
-    }
+    });
+    } 
 
     function yield_prediction() {
         event.preventDefault();

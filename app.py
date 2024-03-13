@@ -27,7 +27,6 @@ def crop_recommendation():
     # return render_template('crop_recommendation.html')
     return None
 
-
 @app.route('/soil_crop_prediction', methods=['POST', 'GET'])
 def soil_crop_prediction():
     if request.method == 'POST':
@@ -38,10 +37,13 @@ def soil_crop_prediction():
         param3 = float(data['param3'])
         param4 = float(data['param4'])
         param5 = float(data['param5'])
-
-        predicted_crop, city, curr_temperature, curr_humidity = SoilCropPrediction(param1, param2, param3, param4, param5)
+        latitude = data['lat']
+        longitude = data['lon']
+        print(param1, param2, param3, param4, param5, latitude, longitude)
+        # predicted_crop, city, curr_temperature, curr_humidity = SoilCropPrediction(param1, param2, param3, param4, param5, latitude, longitude)
+        predicted_crop, curr_temperature, curr_humidity = SoilCropPrediction(param1, param2, param3, param4, param5, latitude, longitude)
         # return render_template('soil_crop_prediction_result.html', predicted_crop=predicted_crop, city=city,curr_temperature=curr_temperature, curr_humidity=curr_humidity)
-        return jsonify(predicted_crop, city, curr_temperature, curr_humidity)
+        return jsonify(predicted_crop, curr_temperature, curr_humidity)# city,
     # return render_template('soil_crop_prediction.html')
     return None
 
