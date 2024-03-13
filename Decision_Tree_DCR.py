@@ -1,5 +1,5 @@
 # decision_tree.py
-
+from app import Decision_Node
 class Question:
     def __init__(self, column, value):
         self.column = column
