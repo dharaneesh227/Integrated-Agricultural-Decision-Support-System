@@ -81,5 +81,9 @@ def crop_price_prediction():
 def privacy_policy():
     return render_template('privacy_policy.html')
 
+@app.route('/terms_of_service', methods=['GET'])
+def terms_of_service():
+    return render_template('tos.html')
+
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0")
