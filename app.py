@@ -77,5 +77,9 @@ def crop_price_prediction():
     # return render_template('crop_price_prediction.html')
     return None
 
+@app.route('/privacy_policy', methods=['GET'])
+def privacy_policy():
+    return render_template('privacy_policy.html')
+
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0")
